@@ -10,7 +10,7 @@ impl Solution {
             return 0;
         }
 
-        let mem_arr = mem.borrow_mut();
+        let mem_arr = mem.borrow();
         if mem_arr[idx] != -1 {
             return mem_arr[idx];
         }
