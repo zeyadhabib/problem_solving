@@ -7,8 +7,8 @@ impl Solution {
         nums.sort();
 
         let n = nums.len();
-        let mut len = 1;
-        let mut len_i = 0;
+        let mut max_len = 1;
+        let mut max_len_i = 0;
         let mut mem = vec![(1, None); n + 1];
         
         for i in 0..n {
@@ -21,18 +21,18 @@ impl Solution {
                     *i_prv = Some(j);
                 }
 
-                if len < *i_len {
-                    len_i = i;
-                    len = *i_len;
+                if max_len < *i_len {
+                    max_len_i = i;
+                    max_len = *i_len;
                 }
             }
         }
 
-        let mut ans = vec![nums[len_i]; len];
+        let mut ans = vec![nums[max_len_i]];
         
-        while let Some(prev) = mem[len_i].1 {
-            ans.push(nums[len_i]);
-            len_i = prev;
+        while let Some(prev) = mem[max_len_i].1 {
+            ans.push(nums[prev]);
+            max_len_i = prev;
         }
 
         ans
