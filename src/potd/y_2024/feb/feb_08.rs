@@ -2,6 +2,8 @@ use crate::Solution;
 
 use std::{cell::RefCell, collections::HashMap, rc::Rc};
 
+// 279. Perfect Squares
+// TAGS: DP, top-down
 impl Solution {
 
     pub fn slv_2 (i: i32, n: i32, mem: Rc<RefCell<HashMap<i32, i32>>>) -> i32 {

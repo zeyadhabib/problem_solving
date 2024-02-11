@@ -2,7 +2,8 @@ use crate::Solution;
 
 use std::collections::HashMap;
 
-
+// 49. Group Anagrams
+// TAGS: strings, hash maps
 impl Solution {
     pub fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
         let mut mp = HashMap::<Vec<i32>, Vec<String>>::new();

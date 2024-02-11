@@ -2,6 +2,8 @@ use crate::Solution;
 
 use std::collections::HashMap;
 
+// 451. Sort Characters By Frequency
+// TAGS: Frequency array, strings
 impl Solution {
     pub fn frequency_sort(s: String) -> String {
         let mut fq = s.chars().fold(HashMap::new(), |mut f_arr, ch| {
