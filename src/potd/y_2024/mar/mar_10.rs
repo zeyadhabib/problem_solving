@@ -10,12 +10,17 @@ impl Solution {
             seen
         });
 
-        nums2.iter().fold(HashSet::new(), |mut seen2, num|{
-            if seen.contains(num) {
-                seen2.insert(*num);
-            }
-            seen2
-        }).iter().map(|num| *num).collect::<Vec<i32>>()
+        nums2
+            .iter()
+            .fold(HashSet::new(), |mut seen2, num| {
+                if seen.contains(num) {
+                    seen2.insert(*num);
+                }
+                seen2
+            })
+            .iter()
+            .map(|num| *num)
+            .collect::<Vec<i32>>()
     }
 }
 
@@ -23,17 +28,20 @@ impl Solution {
 // TAGS: Kadane's algorithm
 impl Solution {
     pub fn max_subarray_sum_circular(nums: Vec<i32>) -> i32 {
-        let (all_negative, max, acc) = nums.iter().fold((true, i32::MIN, 0), |(mut all_negative, mut max, mut acc), num| {
-            all_negative = all_negative && (*num < 0);
-            max = max.max(*num);
-            acc += *num;
-            (all_negative, max, acc)
-        });
+        let (all_negative, max, acc) = nums.iter().fold(
+            (true, i32::MIN, 0),
+            |(mut all_negative, mut max, mut acc), num| {
+                all_negative = all_negative && (*num < 0);
+                max = max.max(*num);
+                acc += *num;
+                (all_negative, max, acc)
+            },
+        );
 
         if all_negative {
             return max;
         }
-        
+
         let mut sum_pos = 0;
         let mut sum_neg = 0;
         let mut ans = i32::MIN;
@@ -48,7 +56,7 @@ impl Solution {
             sum_pos = sum_pos.max(0);
             sum_neg = sum_neg.min(0);
         }
-        
+
         ans
     }
 }
