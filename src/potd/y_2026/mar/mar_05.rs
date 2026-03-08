@@ -2,26 +2,20 @@ use crate::Solution;
 
 impl Solution {
     pub fn min_operations(s: String) -> i32 {
-        let mut clear = 0;
-        let mut set = 0;
-
-        let mut clear_expected = '0';
-        let mut set_expected = '1';
-
-        for (idx, char) in s.char_indices() {
-            if char != clear_expected {
-                clear += 1;
-            }
-
-            if char != set_expected {
-                set += 1;
-            }
-
-            clear_expected = (((idx + 1) % 2) as u8 + '0' as u8) as char;
-
-            set_expected = ((idx % 2) as u8 + '0' as u8) as char;
-        }
-
+        let set = s
+            .as_bytes()
+            .iter()
+            .enumerate()
+            .map(|(idx, &val)| (idx % 2) as u8 + val)
+            .filter(|&x| x != '1' as u8)
+            .count() as i32;
+        let clear = s
+            .as_bytes()
+            .iter()
+            .enumerate()
+            .map(|(idx, &val)| ((idx + 1) % 2) as u8 + val)
+            .filter(|&x| x != '1' as u8)
+            .count() as i32;
         set.min(clear)
     }
 }
